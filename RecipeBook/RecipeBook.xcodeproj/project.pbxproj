@@ -12,6 +12,9 @@
 		AC7309B02904AD7400A7CBEA /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309AF2904AD7400A7CBEA /* TextStyle.swift */; };
 		AC7309B42904ADA100A7CBEA /* TextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309B32904ADA000A7CBEA /* TextColor.swift */; };
 		AC7309B72904B06300A7CBEA /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309B62904B06300A7CBEA /* UILabel+Extension.swift */; };
+		AC7309BB2904B15900A7CBEA /* TextStyleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309BA2904B15900A7CBEA /* TextStyleTest.swift */; };
+		AC7309BF2904B40400A7CBEA /* TextColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309BE2904B40400A7CBEA /* TextColorTest.swift */; };
+		AC7309C32904B54500A7CBEA /* UILabel+ExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309C22904B54500A7CBEA /* UILabel+ExtensionTest.swift */; };
 		AC8A362F29049C1E00A43188 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A362E29049C1E00A43188 /* SplashView.swift */; };
 		AC8A363B2904A1C000A43188 /* DesignSystem.docc in Sources */ = {isa = PBXBuildFile; fileRef = AC8A363A2904A1C000A43188 /* DesignSystem.docc */; };
 		AC8A36412904A1C000A43188 /* DesignSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC8A36372904A1C000A43188 /* DesignSystem.framework */; };
@@ -89,6 +92,9 @@
 		AC7309AF2904AD7400A7CBEA /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		AC7309B32904ADA000A7CBEA /* TextColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextColor.swift; sourceTree = "<group>"; };
 		AC7309B62904B06300A7CBEA /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		AC7309BA2904B15900A7CBEA /* TextStyleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyleTest.swift; sourceTree = "<group>"; };
+		AC7309BE2904B40400A7CBEA /* TextColorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextColorTest.swift; sourceTree = "<group>"; };
+		AC7309C22904B54500A7CBEA /* UILabel+ExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+ExtensionTest.swift"; sourceTree = "<group>"; };
 		AC8A362E29049C1E00A43188 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		AC8A36372904A1C000A43188 /* DesignSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC8A36392904A1C000A43188 /* DesignSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DesignSystem.h; sourceTree = "<group>"; };
@@ -210,6 +216,54 @@
 			path = UILabel;
 			sourceTree = "<group>";
 		};
+		AC7309B82904B13700A7CBEA /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				AC7309B92904B14000A7CBEA /* TextStyle */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		AC7309B92904B14000A7CBEA /* TextStyle */ = {
+			isa = PBXGroup;
+			children = (
+				AC7309BA2904B15900A7CBEA /* TextStyleTest.swift */,
+			);
+			path = TextStyle;
+			sourceTree = "<group>";
+		};
+		AC7309BC2904B3F600A7CBEA /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				AC7309BD2904B3FA00A7CBEA /* TextColor */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		AC7309BD2904B3FA00A7CBEA /* TextColor */ = {
+			isa = PBXGroup;
+			children = (
+				AC7309BE2904B40400A7CBEA /* TextColorTest.swift */,
+			);
+			path = TextColor;
+			sourceTree = "<group>";
+		};
+		AC7309C02904B53100A7CBEA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AC7309C12904B53800A7CBEA /* UILabel */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		AC7309C12904B53800A7CBEA /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				AC7309C22904B54500A7CBEA /* UILabel+ExtensionTest.swift */,
+			);
+			path = UILabel;
+			sourceTree = "<group>";
+		};
 		AC8A362D29049C1400A43188 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +303,9 @@
 		AC8A36462904A1C000A43188 /* DesignSystemTests */ = {
 			isa = PBXGroup;
 			children = (
+				AC7309C02904B53100A7CBEA /* Extension */,
+				AC7309BC2904B3F600A7CBEA /* Colors */,
+				AC7309B82904B13700A7CBEA /* Styles */,
 				AC8A36472904A1C000A43188 /* DesignSystemTests.swift */,
 			);
 			path = DesignSystemTests;
@@ -541,6 +598,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC7309C32904B54500A7CBEA /* UILabel+ExtensionTest.swift in Sources */,
+				AC7309BF2904B40400A7CBEA /* TextColorTest.swift in Sources */,
+				AC7309BB2904B15900A7CBEA /* TextStyleTest.swift in Sources */,
 				AC8A36482904A1C000A43188 /* DesignSystemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
