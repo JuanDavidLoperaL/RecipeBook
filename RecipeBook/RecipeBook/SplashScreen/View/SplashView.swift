@@ -5,6 +5,7 @@
 //  Created by Juan david Lopera lopez on 22/10/22.
 //
 
+import DesignSystem
 import Lottie
 import UIKit
 
@@ -18,13 +19,11 @@ final class SplashView: UIView {
     private let splash: LottieAnimationView = {
         let animation: LottieAnimationView = LottieAnimationView()
         animation.animation = LottieAnimation.named("recipesBookAnimation")
-        animation.translatesAutoresizingMaskIntoConstraints = false
         return animation
     }()
     
     private let appTitle: UILabel = {
         let label: UILabel = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Recipes Book"
         label.font = UIFont.systemFont(ofSize: 30.0, weight: .medium)
         label.textAlignment = .center
@@ -63,13 +62,17 @@ final class SplashView: UIView {
     }
     
     private func viewConstraints() {
-        NSLayoutConstraint(item: splash, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: splash, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: splash, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: splash, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.4, constant: 0.0).isActive = true
+        splash.layout.makeConstraints { view in
+            view.leadingAnchor(toItem: self, toItemAttribute: .leading)
+            view.trailingAnchor(toItem: self, toItemAttribute: .trailing)
+            view.centerYAnchor(toItem: self, toItemAttribute: .centerY)
+            view.heightAnchor(toItem: self, toItemAttribute: .height, multiplier: 0.4)
+        }
         
-        NSLayoutConstraint(item: appTitle, attribute: .top, relatedBy: .equal, toItem: splash, attribute: .bottom, multiplier: 1.0, constant: 10.0).isActive = true
-        NSLayoutConstraint(item: appTitle, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: appTitle, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 31.0).isActive = true
+        appTitle.layout.makeConstraints { view in
+            view.topAnchor(toItem: splash, toItemAttribute: .bottom, constant: 10.0)
+            view.centerXAnchor(toItem: self, toItemAttribute: .centerX)
+            view.heightAnchor(toItem: nil, toItemAttribute: .notAnAttribute, constant: 31.0)
+        }
     }
 }
