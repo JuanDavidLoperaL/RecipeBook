@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC8A362F29049C1E00A43188 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A362E29049C1E00A43188 /* SplashView.swift */; };
 		AC98F15929047E0400DFBE6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC98F15829047E0400DFBE6F /* AppDelegate.swift */; };
 		AC98F15B29047E0400DFBE6F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC98F15A29047E0400DFBE6F /* SceneDelegate.swift */; };
 		AC98F15D29047E0400DFBE6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC98F15C29047E0400DFBE6F /* ViewController.swift */; };
@@ -16,6 +17,9 @@
 		AC98F17029047E0400DFBE6F /* RecipeBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC98F16F29047E0400DFBE6F /* RecipeBookTests.swift */; };
 		AC98F17A29047E0400DFBE6F /* RecipeBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC98F17929047E0400DFBE6F /* RecipeBookUITests.swift */; };
 		AC98F17C29047E0400DFBE6F /* RecipeBookUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC98F17B29047E0400DFBE6F /* RecipeBookUITestsLaunchTests.swift */; };
+		AC98F18A29047F8600DFBE6F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = AC98F18929047F8600DFBE6F /* Lottie */; };
+		AC98F18F2904801600DFBE6F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC98F18E2904801600DFBE6F /* SplashViewController.swift */; };
+		AC98F1912904882B00DFBE6F /* recipesBookAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = AC98F1902904882B00DFBE6F /* recipesBookAnimation.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC8A362E29049C1E00A43188 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		AC98F15529047E0300DFBE6F /* RecipeBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC98F15829047E0400DFBE6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC98F15A29047E0400DFBE6F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +54,8 @@
 		AC98F17529047E0400DFBE6F /* RecipeBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipeBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC98F17929047E0400DFBE6F /* RecipeBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBookUITests.swift; sourceTree = "<group>"; };
 		AC98F17B29047E0400DFBE6F /* RecipeBookUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBookUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AC98F18E2904801600DFBE6F /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		AC98F1902904882B00DFBE6F /* recipesBookAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recipesBookAnimation.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC98F18A29047F8600DFBE6F /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +84,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC8A362D29049C1400A43188 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AC8A362E29049C1E00A43188 /* SplashView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AC8A363029049CD800A43188 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AC98F18E2904801600DFBE6F /* SplashViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		AC8A363129049CDF00A43188 /* AnimationJSON */ = {
+			isa = PBXGroup;
+			children = (
+				AC98F1902904882B00DFBE6F /* recipesBookAnimation.json */,
+			);
+			path = AnimationJSON;
+			sourceTree = "<group>";
+		};
 		AC98F14C29047E0300DFBE6F = {
 			isa = PBXGroup;
 			children = (
@@ -99,12 +131,13 @@
 		AC98F15729047E0300DFBE6F /* RecipeBook */ = {
 			isa = PBXGroup;
 			children = (
+				AC98F18B29047FA700DFBE6F /* SplashScreen */,
 				AC98F15829047E0400DFBE6F /* AppDelegate.swift */,
 				AC98F15A29047E0400DFBE6F /* SceneDelegate.swift */,
 				AC98F15C29047E0400DFBE6F /* ViewController.swift */,
 				AC98F15E29047E0400DFBE6F /* Main.storyboard */,
-				AC98F16129047E0400DFBE6F /* Assets.xcassets */,
 				AC98F16329047E0400DFBE6F /* LaunchScreen.storyboard */,
+				AC98F16129047E0400DFBE6F /* Assets.xcassets */,
 				AC98F16629047E0400DFBE6F /* Info.plist */,
 			);
 			path = RecipeBook;
@@ -127,6 +160,16 @@
 			path = RecipeBookUITests;
 			sourceTree = "<group>";
 		};
+		AC98F18B29047FA700DFBE6F /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				AC8A363129049CDF00A43188 /* AnimationJSON */,
+				AC8A363029049CD800A43188 /* ViewController */,
+				AC8A362D29049C1400A43188 /* View */,
+			);
+			path = SplashScreen;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +186,9 @@
 			dependencies = (
 			);
 			name = RecipeBook;
+			packageProductDependencies = (
+				AC98F18929047F8600DFBE6F /* Lottie */,
+			);
 			productName = RecipeBook;
 			productReference = AC98F15529047E0300DFBE6F /* RecipeBook.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +261,9 @@
 				Base,
 			);
 			mainGroup = AC98F14C29047E0300DFBE6F;
+			packageReferences = (
+				AC98F18829047F8600DFBE6F /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = AC98F15629047E0300DFBE6F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -234,6 +283,7 @@
 				AC98F16529047E0400DFBE6F /* LaunchScreen.storyboard in Resources */,
 				AC98F16229047E0400DFBE6F /* Assets.xcassets in Resources */,
 				AC98F16029047E0400DFBE6F /* Main.storyboard in Resources */,
+				AC98F1912904882B00DFBE6F /* recipesBookAnimation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +310,9 @@
 			files = (
 				AC98F15D29047E0400DFBE6F /* ViewController.swift in Sources */,
 				AC98F15929047E0400DFBE6F /* AppDelegate.swift in Sources */,
+				AC8A362F29049C1E00A43188 /* SplashView.swift in Sources */,
 				AC98F15B29047E0400DFBE6F /* SceneDelegate.swift in Sources */,
+				AC98F18F2904801600DFBE6F /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,7 +496,6 @@
 				INFOPLIST_FILE = RecipeBook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -472,7 +523,6 @@
 				INFOPLIST_FILE = RecipeBook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -604,6 +654,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AC98F18829047F8600DFBE6F /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AC98F18929047F8600DFBE6F /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC98F18829047F8600DFBE6F /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AC98F14D29047E0300DFBE6F /* Project object */;
 }
