@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		AC7309A62904A5FB00A7CBEA /* ViewCodeDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309A52904A5FB00A7CBEA /* ViewCodeDSL.swift */; };
 		AC7309A92904A68E00A7CBEA /* View+Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309A82904A68E00A7CBEA /* View+Anchor.swift */; };
+		AC7309B02904AD7400A7CBEA /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309AF2904AD7400A7CBEA /* TextStyle.swift */; };
+		AC7309B42904ADA100A7CBEA /* TextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309B32904ADA000A7CBEA /* TextColor.swift */; };
+		AC7309B72904B06300A7CBEA /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309B62904B06300A7CBEA /* UILabel+Extension.swift */; };
 		AC8A362F29049C1E00A43188 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A362E29049C1E00A43188 /* SplashView.swift */; };
 		AC8A363B2904A1C000A43188 /* DesignSystem.docc in Sources */ = {isa = PBXBuildFile; fileRef = AC8A363A2904A1C000A43188 /* DesignSystem.docc */; };
 		AC8A36412904A1C000A43188 /* DesignSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC8A36372904A1C000A43188 /* DesignSystem.framework */; };
@@ -83,6 +86,9 @@
 /* Begin PBXFileReference section */
 		AC7309A52904A5FB00A7CBEA /* ViewCodeDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodeDSL.swift; sourceTree = "<group>"; };
 		AC7309A82904A68E00A7CBEA /* View+Anchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Anchor.swift"; sourceTree = "<group>"; };
+		AC7309AF2904AD7400A7CBEA /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
+		AC7309B32904ADA000A7CBEA /* TextColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextColor.swift; sourceTree = "<group>"; };
+		AC7309B62904B06300A7CBEA /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		AC8A362E29049C1E00A43188 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		AC8A36372904A1C000A43188 /* DesignSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC8A36392904A1C000A43188 /* DesignSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DesignSystem.h; sourceTree = "<group>"; };
@@ -149,6 +155,7 @@
 		AC7309A42904A5EC00A7CBEA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				AC7309B52904B05900A7CBEA /* UILabel */,
 				AC7309A72904A62E00A7CBEA /* UIView */,
 			);
 			path = Extension;
@@ -161,6 +168,46 @@
 				AC7309A82904A68E00A7CBEA /* View+Anchor.swift */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		AC7309AD2904AD4100A7CBEA /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				AC7309AE2904AD4900A7CBEA /* TextStyle */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		AC7309AE2904AD4900A7CBEA /* TextStyle */ = {
+			isa = PBXGroup;
+			children = (
+				AC7309AF2904AD7400A7CBEA /* TextStyle.swift */,
+			);
+			path = TextStyle;
+			sourceTree = "<group>";
+		};
+		AC7309B12904AD8900A7CBEA /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				AC7309B22904AD9100A7CBEA /* TextColor */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		AC7309B22904AD9100A7CBEA /* TextColor */ = {
+			isa = PBXGroup;
+			children = (
+				AC7309B32904ADA000A7CBEA /* TextColor.swift */,
+			);
+			path = TextColor;
+			sourceTree = "<group>";
+		};
+		AC7309B52904B05900A7CBEA /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				AC7309B62904B06300A7CBEA /* UILabel+Extension.swift */,
+			);
+			path = UILabel;
 			sourceTree = "<group>";
 		};
 		AC8A362D29049C1400A43188 /* View */ = {
@@ -190,6 +237,8 @@
 		AC8A36382904A1C000A43188 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				AC7309B12904AD8900A7CBEA /* Colors */,
+				AC7309AD2904AD4100A7CBEA /* Styles */,
 				AC7309A42904A5EC00A7CBEA /* Extension */,
 				AC8A36392904A1C000A43188 /* DesignSystem.h */,
 				AC8A363A2904A1C000A43188 /* DesignSystem.docc */,
@@ -479,7 +528,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC7309B02904AD7400A7CBEA /* TextStyle.swift in Sources */,
 				AC7309A62904A5FB00A7CBEA /* ViewCodeDSL.swift in Sources */,
+				AC7309B72904B06300A7CBEA /* UILabel+Extension.swift in Sources */,
+				AC7309B42904ADA100A7CBEA /* TextColor.swift in Sources */,
 				AC7309A92904A68E00A7CBEA /* View+Anchor.swift in Sources */,
 				AC8A363B2904A1C000A43188 /* DesignSystem.docc in Sources */,
 			);

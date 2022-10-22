@@ -25,8 +25,7 @@ final class SplashView: UIView {
     private let appTitle: UILabel = {
         let label: UILabel = UILabel()
         label.text = "Recipes Book"
-        label.font = UIFont.systemFont(ofSize: 30.0, weight: .medium)
-        label.textAlignment = .center
+        label.applyStyle(.headerSplash(alignment: .center))
         return label
     }()
     
