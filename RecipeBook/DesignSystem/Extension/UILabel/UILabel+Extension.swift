@@ -7,8 +7,8 @@
 
 import UIKit
 
-extension UILabel {
-    public func applyStyle(_ style: TextStyle) {
+public extension UILabel {
+    func applyStyle(_ style: TextStyle) {
         let configuration = style.getConfiguration()
         self.font = configuration.font
         self.textAlignment = configuration.alignment

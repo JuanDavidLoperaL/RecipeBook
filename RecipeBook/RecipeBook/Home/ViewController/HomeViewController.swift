@@ -1,24 +1,25 @@
 //
-//  SplashViewController.swift
+//  HomeViewController.swift
 //  RecipeBook
 //
 //  Created by Juan david Lopera lopez on 22/10/22.
 //
 
-import Lottie
 import UIKit
 
-final class SplashViewController: UIViewController {
-
+final class HomeViewController: UIViewController {
+    
     // MARK: - Private UI Properties
-    private let baseView: SplashView = SplashView()
+    private let baseView: HomeView = HomeView()
     
     // MARK: - Private Properties
     private let coordinator: RecipesCoordinator
+    private let viewModel: HomeViewModel
     
     // MARK: - Internal Init
-    init(coordinator: RecipesCoordinator) {
+    init(coordinator: RecipesCoordinator, viewModel: HomeViewModel = HomeViewModel()) {
         self.coordinator = coordinator
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,7 +28,6 @@ final class SplashViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     // MARK: - Life cycle
     override func loadView() {
         self.view = baseView
@@ -35,13 +35,18 @@ final class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBar()
     }
 }
 
-// MARK: - SplashView Delegate Implementation
-extension SplashViewController: SplashViewDelegate {
-    func animationHasFinished() {
-        coordinator.navigateToHome()
+// MARK: - Private Functions
+private extension HomeViewController {
+    func setupNavigationBar() {
+        self.title = "Home"
+        self.navigationItem.setHidesBackButton(true, animated: true)
     }
 }
