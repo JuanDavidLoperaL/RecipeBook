@@ -33,4 +33,9 @@ final class RecipesCoordinator {
         let favoriteRecipesViewController: FavoriteRecipesViewController = FavoriteRecipesViewController(coordinator: self)
         self.navigationController.pushViewController(favoriteRecipesViewController, animated: true)
     }
+    
+    func navigateToSearchRecipe() {
+        let searchRecipeViewController: SearchRecipeViewController = SearchRecipeViewController(coordinator: self)
+        self.navigationController.pushViewController(searchRecipeViewController, animated: true)
+    }
 }

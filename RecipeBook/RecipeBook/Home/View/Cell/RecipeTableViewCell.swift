@@ -45,7 +45,7 @@ final class RecipeTableViewCell: UITableViewCell {
         let button: UIButton = UIButton()
         button.addTarget(self, action: #selector(seeMoreAction), for: .touchDown)
         button.applyStyle(.link)
-        button.setTitle("Ver mas...", for: .normal)
+        button.setTitle("Ver mas", for: .normal)
         return button
     }()
     
