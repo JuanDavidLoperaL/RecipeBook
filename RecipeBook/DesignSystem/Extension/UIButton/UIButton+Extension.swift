@@ -14,6 +14,7 @@ public extension UIButton {
         self.layer.cornerRadius = configuration.cornerRadius
         self.layer.borderColor = configuration.borderColor.get().cgColor
         self.layer.borderWidth = configuration.borderWidth
+        self.titleLabel?.adjustsFontSizeToFitWidth = true
         self.setTitleColor(configuration.textColor.get(), for: .normal)
         let attributedText: NSAttributedString = NSAttributedString(string: self.titleLabel?.text ?? "", attributes: [NSAttributedString.Key.font: configuration.font])
         self.setAttributedTitle(attributedText, for: .normal)

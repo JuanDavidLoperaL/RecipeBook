@@ -68,6 +68,6 @@ private extension HomeViewController {
     
     @objc
     func searchAction() {
-        print("Buscando")
+        coordinator.navigateToSearchRecipe()
     }
 }
