@@ -8,13 +8,17 @@
 import Lottie
 import UIKit
 
-class SplashViewControllers: UIViewController {
+final class SplashViewController: UIViewController {
 
     // MARK: - Private UI Properties
     private let baseView: SplashView = SplashView()
     
+    // MARK: - Private Properties
+    private let coordinator: RecipesCoordinator
+    
     // MARK: - Internal Init
-    init() {
+    init(coordinator: RecipesCoordinator) {
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,8 +40,8 @@ class SplashViewControllers: UIViewController {
 }
 
 // MARK: - SplashView Delegate Implementation
-extension SplashViewControllers: SplashViewDelegate {
+extension SplashViewController: SplashViewDelegate {
     func animationHasFinished() {
-        print("Move to next screen")
+        coordinator.navigateToHome()
     }
 }

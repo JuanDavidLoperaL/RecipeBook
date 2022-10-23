@@ -42,25 +42,18 @@ final class SplashView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+// MARK: - ViewCode Configuration
+extension SplashView: ViewConfigurationProtocol {
     
-    private func setup() {
-        self.backgroundColor = .white
-        viewHierarchy()
-        viewConstraints()
-        splash.animation = LottieAnimation.named("recipesBookAnimation")
-        splash.play { _ in
-            self.delegate?.animationHasFinished()
-        }
-        
-    }
-    
-    private func viewHierarchy() {
+    func viewHierarchy() {
         [splash, appTitle].forEach { view in
             addSubview(view)
         }
     }
     
-    private func viewConstraints() {
+    func viewConstraints() {
         splash.layout.makeConstraints { view in
             view.leadingAnchor(toItem: self, toItemAttribute: .leading)
             view.trailingAnchor(toItem: self, toItemAttribute: .trailing)
@@ -72,6 +65,14 @@ final class SplashView: UIView {
             view.topAnchor(toItem: splash, toItemAttribute: .bottom, constant: 10.0)
             view.centerXAnchor(toItem: self, toItemAttribute: .centerX)
             view.heightAnchor(toItem: nil, toItemAttribute: .notAnAttribute, constant: 31.0)
+        }
+    }
+    
+    func viewExtraConfiguration() {
+        self.applyStyle(.primary)
+        splash.animation = LottieAnimation.named("recipesBookAnimation")
+        splash.play { _ in
+            self.delegate?.animationHasFinished()
         }
     }
 }
