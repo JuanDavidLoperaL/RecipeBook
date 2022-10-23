@@ -1,5 +1,5 @@
 //
-//  HomeViewModelTest.swift
+//  FavoriteRecipesViewModelTest.swift
 //  RecipeBookTests
 //
 //  Created by Juan david Lopera lopez on 23/10/22.
@@ -8,12 +8,12 @@
 @testable import RecipeBook
 import XCTest
 
-final class HomeViewModelTest: XCTestCase {
+final class FavoriteRecipesViewModelTest: XCTestCase {
 
-    var viewModel: HomeViewModel!
+    var viewModel: FavoriteRecipesViewModel!
     
     override func setUpWithError() throws {
-        viewModel = HomeViewModel()
+        viewModel = FavoriteRecipesViewModel()
     }
 
     override func tearDownWithError() throws {
@@ -21,11 +21,7 @@ final class HomeViewModelTest: XCTestCase {
     }
 
     func testNavigationTitleComputedProperty() throws {
-        XCTAssertEqual(viewModel.navigationTitle, "Home")
-    }
-    
-    func testSearchTitleComputedProperty() throws {
-        XCTAssertEqual(viewModel.searchTitle, "Buscar")
+        XCTAssertEqual(viewModel.navigationTitle, "Favorite Recipes")
     }
 
 }

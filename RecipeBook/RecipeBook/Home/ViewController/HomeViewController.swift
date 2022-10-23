@@ -35,6 +35,7 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseView.delegate = self
         baseView.set(viewModel: viewModel)
     }
     
@@ -43,6 +44,14 @@ final class HomeViewController: UIViewController {
         setupNavigationBar()
     }
 }
+
+// MARK: - HomeView Delegate Implementation
+extension HomeViewController: HomeViewDelegate {
+    func favoriteRecipesTapped() {
+        coordinator.navigateToFavoriteRecipes()
+    }
+}
+
 
 // MARK: - Private Functions
 private extension HomeViewController {
