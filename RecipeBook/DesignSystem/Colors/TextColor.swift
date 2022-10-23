@@ -13,6 +13,8 @@ let transparentBlack: UIColor = UIColor(red: 39/255, green: 39/255, blue: 39/255
 public enum TextColor {
     case primary
     case secondary
+    case white
+    case buttonSecondary
     
     func get() -> UIColor {
         switch self {
@@ -20,6 +22,10 @@ public enum TextColor {
             return chalkBlack
         case .secondary:
             return transparentBlack
+        case .white:
+            return .white
+        case .buttonSecondary:
+            return lightCarminePink
         }
     }
 }

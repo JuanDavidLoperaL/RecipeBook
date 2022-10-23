@@ -27,6 +27,8 @@ final class HomeView: UIView {
         let button: UIButton = UIButton()
         button.backgroundColor = .systemBlue
         button.addTarget(self, action: #selector(favoriteRecipesAction), for: .touchDown)
+        button.applyStyle(.primaryBtn)
+        button.setTitle("Ver Favoritos", for: .normal)
         return button
     }()
     
