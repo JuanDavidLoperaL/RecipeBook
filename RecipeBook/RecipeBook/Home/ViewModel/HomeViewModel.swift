@@ -14,6 +14,14 @@ final class HomeViewModel {
         return 5
     }
     
+    var navigationTitle: String {
+        return "Home"
+    }
+    
+    var searchTitle: String {
+        return "Buscar"
+    }
+    
     var mainImage: String {
         return "SomeImage"
     }
@@ -28,5 +36,9 @@ final class HomeViewModel {
     
     var preparationTime: String {
         return "Preparation time"
+    }
+    
+    var favoriteImage: String {
+        return "favorite"
     }
 }

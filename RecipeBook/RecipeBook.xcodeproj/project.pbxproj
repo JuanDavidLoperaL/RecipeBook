@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC0D1E0129050D98002098EF /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0D1E0029050D98002098EF /* RecipeTableViewCell.swift */; };
+		AC0D1E0429051202002098EF /* DatasourceRecipeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0D1E0329051202002098EF /* DatasourceRecipeTable.swift */; };
+		AC0D1E0B29051309002098EF /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0D1E0A29051309002098EF /* UITableView+Extension.swift */; };
+		AC0D1E0D290513A2002098EF /* DelegateRecipeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0D1E0C290513A2002098EF /* DelegateRecipeTable.swift */; };
+		AC0D1E1329051A02002098EF /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0D1E1229051A02002098EF /* HomeViewModelTest.swift */; };
 		AC7309A62904A5FB00A7CBEA /* ViewCodeDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309A52904A5FB00A7CBEA /* ViewCodeDSL.swift */; };
 		AC7309A92904A68E00A7CBEA /* View+Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309A82904A68E00A7CBEA /* View+Anchor.swift */; };
 		AC7309B02904AD7400A7CBEA /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309AF2904AD7400A7CBEA /* TextStyle.swift */; };
@@ -96,6 +101,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AC0D1E0029050D98002098EF /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		AC0D1E0329051202002098EF /* DatasourceRecipeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasourceRecipeTable.swift; sourceTree = "<group>"; };
+		AC0D1E0A29051309002098EF /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		AC0D1E0C290513A2002098EF /* DelegateRecipeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateRecipeTable.swift; sourceTree = "<group>"; };
+		AC0D1E1229051A02002098EF /* HomeViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
 		AC7309A52904A5FB00A7CBEA /* ViewCodeDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodeDSL.swift; sourceTree = "<group>"; };
 		AC7309A82904A68E00A7CBEA /* View+Anchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Anchor.swift"; sourceTree = "<group>"; };
 		AC7309AF2904AD7400A7CBEA /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
@@ -176,9 +186,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC0D1DFF29050D7D002098EF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				AC0D1E0029050D98002098EF /* RecipeTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		AC0D1E02290511F1002098EF /* DatasourceDelegateTableView */ = {
+			isa = PBXGroup;
+			children = (
+				AC0D1E0329051202002098EF /* DatasourceRecipeTable.swift */,
+				AC0D1E0C290513A2002098EF /* DelegateRecipeTable.swift */,
+			);
+			path = DatasourceDelegateTableView;
+			sourceTree = "<group>";
+		};
+		AC0D1E09290512FB002098EF /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				AC0D1E0A29051309002098EF /* UITableView+Extension.swift */,
+			);
+			path = UITableView;
+			sourceTree = "<group>";
+		};
+		AC0D1E0E290519E4002098EF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				AC0D1E0F290519E8002098EF /* ViewModel */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		AC0D1E0F290519E8002098EF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC0D1E1229051A02002098EF /* HomeViewModelTest.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		AC7309A42904A5EC00A7CBEA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				AC0D1E09290512FB002098EF /* UITableView */,
 				AC7309B52904B05900A7CBEA /* UILabel */,
 				AC7309A72904A62E00A7CBEA /* UIView */,
 			);
@@ -284,6 +336,7 @@
 		AC7309C52904B6FA00A7CBEA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				AC0D1E02290511F1002098EF /* DatasourceDelegateTableView */,
 				AC7309CD2904C3B000A7CBEA /* HomeViewController.swift */,
 			);
 			path = ViewController;
@@ -292,6 +345,7 @@
 		AC7309C62904B70000A7CBEA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AC0D1DFF29050D7D002098EF /* Cell */,
 				AC7309C72904B70D00A7CBEA /* HomeView.swift */,
 			);
 			path = View;
@@ -410,6 +464,7 @@
 		AC98F16E29047E0400DFBE6F /* RecipeBookTests */ = {
 			isa = PBXGroup;
 			children = (
+				AC0D1E0E290519E4002098EF /* Home */,
 				AC98F16F29047E0400DFBE6F /* RecipeBookTests.swift */,
 			);
 			path = RecipeBookTests;
@@ -651,6 +706,7 @@
 				AC7309A92904A68E00A7CBEA /* View+Anchor.swift in Sources */,
 				AC7309CB2904C20300A7CBEA /* ViewConfigurationProtocol.swift in Sources */,
 				AC8A363B2904A1C000A43188 /* DesignSystem.docc in Sources */,
+				AC0D1E0B29051309002098EF /* UITableView+Extension.swift in Sources */,
 				AC7309D52904C70400A7CBEA /* UIView+Extension.swift in Sources */,
 				AC7309D12904C52400A7CBEA /* BackgroundColor.swift in Sources */,
 			);
@@ -674,8 +730,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC98F15929047E0400DFBE6F /* AppDelegate.swift in Sources */,
+				AC0D1E0429051202002098EF /* DatasourceRecipeTable.swift in Sources */,
+				AC0D1E0D290513A2002098EF /* DelegateRecipeTable.swift in Sources */,
 				AC8A362F29049C1E00A43188 /* SplashView.swift in Sources */,
 				AC7309DD2904CA4600A7CBEA /* RecipesCoordinator.swift in Sources */,
+				AC0D1E0129050D98002098EF /* RecipeTableViewCell.swift in Sources */,
 				AC7309DA2904C93D00A7CBEA /* HomeViewModel.swift in Sources */,
 				AC98F15B29047E0400DFBE6F /* SceneDelegate.swift in Sources */,
 				AC7309C82904B70D00A7CBEA /* HomeView.swift in Sources */,
@@ -689,6 +748,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC98F17029047E0400DFBE6F /* RecipeBookTests.swift in Sources */,
+				AC0D1E1329051A02002098EF /* HomeViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

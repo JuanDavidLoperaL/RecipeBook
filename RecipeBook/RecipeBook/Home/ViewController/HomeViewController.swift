@@ -35,6 +35,7 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseView.set(viewModel: viewModel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +47,18 @@ final class HomeViewController: UIViewController {
 // MARK: - Private Functions
 private extension HomeViewController {
     func setupNavigationBar() {
-        self.title = "Home"
+        self.title = viewModel.navigationTitle
         self.navigationItem.setHidesBackButton(true, animated: true)
+        let searchButton: UIBarButtonItem = UIBarButtonItem(title: viewModel.searchTitle,
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(searchAction))
+        searchButton.tintColor = .black
+        self.navigationItem.rightBarButtonItem = searchButton
+    }
+    
+    @objc
+    func searchAction() {
+        print("Buscando")
     }
 }

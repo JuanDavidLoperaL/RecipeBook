@@ -24,9 +24,9 @@ public enum TextStyle {
         case let .headerSplash(alignment):
             return Configuration(font: .systemFont(ofSize: 30.0, weight: .bold), textColor: .primary, alignment: alignment)
         case let .header(alignment):
-            return Configuration(font: .systemFont(ofSize: 19, weight: .medium), textColor: .primary, alignment: alignment)
+            return Configuration(font: .systemFont(ofSize: 17.0, weight: .medium), textColor: .primary, alignment: alignment)
         case let .body(alignment):
-            return Configuration(font: .systemFont(ofSize: 15, weight: .regular), textColor: .secondary, alignment: alignment)
+            return Configuration(font: .systemFont(ofSize: 12.0, weight: .regular), textColor: .secondary, alignment: alignment)
         }
     }
 }

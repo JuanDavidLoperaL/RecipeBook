@@ -16,11 +16,18 @@ final class HomeView: UIView {
         let table: UITableView = UITableView()
         table.tableFooterView = UIView()
         table.applyStyle(.primary)
+        table.register(RecipeTableViewCell.self)
         return table
     }()
     
+    // MARK: - Private Properties
+    private let datasourceTable: DatasourceRecipeTable
+    private let delegateTable: DelegateRecipeTable
+    
     // MARK: - Internal Init
     init() {
+        datasourceTable = DatasourceRecipeTable()
+        delegateTable = DelegateRecipeTable()
         super.init(frame: .zero)
         setup()
     }
@@ -46,5 +53,14 @@ extension HomeView: ViewConfigurationProtocol {
     
     func viewExtraConfiguration() {
         self.applyStyle(.primary)
+    }
+}
+
+// MARK: - Internal Function
+extension HomeView {
+    func set(viewModel: HomeViewModel) {
+        recipesTableView.dataSource = datasourceTable
+        recipesTableView.delegate = delegateTable
+        recipesTableView.reloadData()
     }
 }
