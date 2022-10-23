@@ -41,6 +41,14 @@ final class RecipeTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let seeMoreButton: UIButton = {
+        let button: UIButton = UIButton()
+        button.addTarget(self, action: #selector(seeMoreAction), for: .touchDown)
+        button.applyStyle(.link)
+        button.setTitle("Ver mas...", for: .normal)
+        return button
+    }()
+    
     private let addFavoriteButton: UIButton = {
         let button: UIButton = UIButton()
         button.addTarget(self, action: #selector(addFavoriteAction), for: .touchDown)
@@ -62,7 +70,7 @@ final class RecipeTableViewCell: UITableViewCell {
 // MARK: - ViewCode Configuration
 extension RecipeTableViewCell: ViewConfigurationProtocol {
     func viewHierarchy() {
-        [mainImage, recipeTitleLabel, servingsLabel, preparationTimeLabel, addFavoriteButton].forEach { view in
+        [mainImage, recipeTitleLabel, servingsLabel, preparationTimeLabel, seeMoreButton, addFavoriteButton].forEach { view in
             containerView.addSubview(view)
         }
         contentView.addSubview(containerView)
@@ -101,7 +109,14 @@ extension RecipeTableViewCell: ViewConfigurationProtocol {
             view.leadingAnchor(toItem: containerView, toItemAttribute: .leading, constant: 5.0)
             view.trailingAnchor(toItem: containerView, toItemAttribute: .trailing, constant: -5.0)
             view.heightAnchor(toItem: nil, toItemAttribute: .notAnAttribute, constant: 13.0)
-            view.bottomAnchor(toItem: containerView, toItemAttribute: .bottom, constant: -10.0)
+        }
+        
+        seeMoreButton.layout.makeConstraints { view in
+            view.topAnchor(toItem: preparationTimeLabel, toItemAttribute: .bottom, constant: 5.0)
+            view.leadingAnchor(toItem: containerView, toItemAttribute: .leading, constant: 2.0)
+            view.trailingAnchor(toItem: containerView, toItemAttribute: .trailing, constant: -2.0)
+            view.heightAnchor(toItem: nil, toItemAttribute: .notAnAttribute, constant: 45.0)
+            view.bottomAnchor(toItem: containerView, toItemAttribute: .bottom, constant: -2.0)
         }
         
         addFavoriteButton.layout.makeConstraints { view in
@@ -133,6 +148,11 @@ extension RecipeTableViewCell {
 private extension RecipeTableViewCell {
     @objc
     func addFavoriteAction() {
+        print("adicionando a favoritos")
+    }
+    
+    @objc
+    func seeMoreAction() {
         print("adicionando a favoritos")
     }
 }

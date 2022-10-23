@@ -35,6 +35,6 @@ final class FavoriteRecipesViewModel {
     }
     
     var favoriteImage: String {
-        return "favorite"
+        return "close"
     }
 }
