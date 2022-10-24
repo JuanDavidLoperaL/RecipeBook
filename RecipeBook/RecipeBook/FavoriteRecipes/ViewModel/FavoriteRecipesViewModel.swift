@@ -8,7 +8,6 @@
 import Foundation
 
 final class FavoriteRecipesViewModel {
-    
     // MARK: - Computed Properties
     var numberOfRow: Int {
         return 5

@@ -10,10 +10,12 @@ import XCTest
 
 final class HomeViewModelTest: XCTestCase {
 
+    var api: HomeAPIMock!
     var viewModel: HomeViewModel!
     
     override func setUpWithError() throws {
-        viewModel = HomeViewModel()
+        api = HomeAPIMock()
+        viewModel = HomeViewModel(api: api)
     }
 
     override func tearDownWithError() throws {
@@ -28,4 +30,16 @@ final class HomeViewModelTest: XCTestCase {
         XCTAssertEqual(viewModel.searchTitle, "Buscar")
     }
 
+    func testGetRecipesWithSuccess() {
+        api.shouldFail = false
+        viewModel.getRecipes { [self] recipesLoaded in
+            XCTAssertTrue(recipesLoaded)
+            XCTAssertEqual(viewModel.numberOfRow, 10)
+            viewModel.currentCell = 2
+            XCTAssertEqual(viewModel.viewData.id, 0)
+            XCTAssertEqual(viewModel.viewData.title, "Recipe")
+            XCTAssertEqual(viewModel.viewData.preparationTime, "Tiempo de preparación 10 min.")
+            XCTAssertEqual(viewModel.viewData.servings, "Sirve 2 persona(s)")
+        }
+    }
 }

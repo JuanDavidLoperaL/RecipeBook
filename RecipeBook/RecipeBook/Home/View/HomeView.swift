@@ -85,8 +85,13 @@ extension HomeView: ViewConfigurationProtocol {
 // MARK: - Internal Function
 extension HomeView {
     func set(viewModel: HomeViewModel) {
+        datasourceTable.viewModel = viewModel
         recipesTableView.dataSource = datasourceTable
         recipesTableView.delegate = delegateTable
+        recipesTableView.reloadData()
+    }
+    
+    func reloadTable() {
         recipesTableView.reloadData()
     }
 }
