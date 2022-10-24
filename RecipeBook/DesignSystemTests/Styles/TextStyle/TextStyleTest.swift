@@ -21,13 +21,13 @@ class TextStyleTest: XCTestCase {
         let headerStyleConfiguration: TextStyle.Configuration = TextStyle.header(alignment: .center).getConfiguration()
         XCTAssertEqual(headerStyleConfiguration.textColor, TextColor.primary)
         XCTAssertEqual(headerStyleConfiguration.alignment, .center)
-        XCTAssertEqual(headerStyleConfiguration.font, .systemFont(ofSize: 19, weight: .medium))
+        XCTAssertEqual(headerStyleConfiguration.font, .systemFont(ofSize: 17, weight: .medium))
     }
     
     func testTextStyleBodyConfiguration() throws {
         let bodyStyleConfiguration: TextStyle.Configuration = TextStyle.body(alignment: .center).getConfiguration()
         XCTAssertEqual(bodyStyleConfiguration.textColor, TextColor.secondary)
         XCTAssertEqual(bodyStyleConfiguration.alignment, .center)
-        XCTAssertEqual(bodyStyleConfiguration.font, .systemFont(ofSize: 15, weight: .regular))
+        XCTAssertEqual(bodyStyleConfiguration.font, .systemFont(ofSize: 12, weight: .regular))
     }
 }
