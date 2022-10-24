@@ -18,6 +18,7 @@ final class DatasourceFavoriteRecipesTableView: NSObject, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: FavoriteRecipesCell = tableView.dequeueReusableCell(for: indexPath)
+        viewModel.currentCell = indexPath.row
         cell.set(viewModel: viewModel)
         return cell
     }

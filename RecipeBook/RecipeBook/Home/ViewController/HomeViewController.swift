@@ -10,6 +10,7 @@ import UIKit
 protocol HomeViewControllerDelegate: AnyObject {
     func recipeSelected(recipeViewData: RecipeViewData)
     func reloadTable()
+    func addFavoriteFail()
 }
 
 final class HomeViewController: UIViewController {
@@ -89,6 +90,13 @@ extension HomeViewController: HomeViewControllerDelegate {
     
     func reloadTable() {
         baseView.reloadTable()
+    }
+    
+    func addFavoriteFail() {
+        let okAction: UIAlertAction = UIAlertAction(title: "OK",
+                                                    style: .default,
+                                                    handler: nil)
+        showAlert(title: viewModel.alertTitle, message: viewModel.alertMessage, actions: [okAction])
     }
 }
 

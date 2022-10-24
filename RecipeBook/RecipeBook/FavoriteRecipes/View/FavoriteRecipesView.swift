@@ -58,6 +58,7 @@ extension FavoriteRecipesView: ViewConfigurationProtocol {
 // MARK: - Internal Function
 extension FavoriteRecipesView {
     func set(viewModel: FavoriteRecipesViewModel) {
+        datasourceTable.viewModel = viewModel
         favoriteRecipesTableView.dataSource = datasourceTable
         favoriteRecipesTableView.delegate = delegateTable
         favoriteRecipesTableView.reloadData()

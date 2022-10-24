@@ -38,6 +38,8 @@
 		AC7309DA2904C93D00A7CBEA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309D92904C93D00A7CBEA /* HomeViewModel.swift */; };
 		AC7309DD2904CA4600A7CBEA /* RecipesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309DC2904CA4600A7CBEA /* RecipesCoordinator.swift */; };
 		AC845A1A2906259900BDE569 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC845A192906259900BDE569 /* UIViewController.swift */; };
+		AC845A1D29063E9700BDE569 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AC845A1C29063E9700BDE569 /* RealmSwift */; };
+		AC845A2029063EB700BDE569 /* RealmHandlerSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC845A1F29063EB700BDE569 /* RealmHandlerSingleton.swift */; };
 		AC8A362F29049C1E00A43188 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A362E29049C1E00A43188 /* SplashView.swift */; };
 		AC8A363B2904A1C000A43188 /* DesignSystem.docc in Sources */ = {isa = PBXBuildFile; fileRef = AC8A363A2904A1C000A43188 /* DesignSystem.docc */; };
 		AC8A36412904A1C000A43188 /* DesignSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC8A36372904A1C000A43188 /* DesignSystem.framework */; };
@@ -190,6 +192,7 @@
 		AC7309D92904C93D00A7CBEA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		AC7309DC2904CA4600A7CBEA /* RecipesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesCoordinator.swift; sourceTree = "<group>"; };
 		AC845A192906259900BDE569 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		AC845A1F29063EB700BDE569 /* RealmHandlerSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHandlerSingleton.swift; sourceTree = "<group>"; };
 		AC8A362E29049C1E00A43188 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		AC8A36372904A1C000A43188 /* DesignSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC8A36392904A1C000A43188 /* DesignSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DesignSystem.h; sourceTree = "<group>"; };
@@ -257,6 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC845A1D29063E9700BDE569 /* RealmSwift in Frameworks */,
 				AC98F18A29047F8600DFBE6F /* Lottie in Frameworks */,
 				AC8A364C2904A1C000A43188 /* DesignSystem.framework in Frameworks */,
 				ACB768F02905C1CA0085AE96 /* APIManager.framework in Frameworks */,
@@ -570,6 +574,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		AC845A1E29063EA700BDE569 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				AC845A1F29063EB700BDE569 /* RealmHandlerSingleton.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		AC8A362D29049C1400A43188 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +660,7 @@
 		AC98F15729047E0300DFBE6F /* RecipeBook */ = {
 			isa = PBXGroup;
 			children = (
+				AC845A1E29063EA700BDE569 /* Realm */,
 				ACB7690B290616C50085AE96 /* Extension */,
 				ACB769012905C5230085AE96 /* Environment */,
 				AC7309DB2904CA2F00A7CBEA /* Coordinator */,
@@ -918,6 +931,7 @@
 			name = RecipeBook;
 			packageProductDependencies = (
 				AC98F18929047F8600DFBE6F /* Lottie */,
+				AC845A1C29063E9700BDE569 /* RealmSwift */,
 			);
 			productName = RecipeBook;
 			productReference = AC98F15529047E0300DFBE6F /* RecipeBook.app */;
@@ -1044,6 +1058,7 @@
 			mainGroup = AC98F14C29047E0300DFBE6F;
 			packageReferences = (
 				AC98F18829047F8600DFBE6F /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				AC845A1B29063E9700BDE569 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = AC98F15629047E0300DFBE6F /* Products */;
 			projectDirPath = "";
@@ -1167,6 +1182,7 @@
 				ACB769082905D3080085AE96 /* RecipePreview.swift in Sources */,
 				ACB768CA2905AC480085AE96 /* SearchRecipeView.swift in Sources */,
 				ACB7690A2906062C0085AE96 /* RecipeViewData.swift in Sources */,
+				AC845A2029063EB700BDE569 /* RealmHandlerSingleton.swift in Sources */,
 				AC7309DD2904CA4600A7CBEA /* RecipesCoordinator.swift in Sources */,
 				ACB769062905C73E0085AE96 /* Recipe.swift in Sources */,
 				AC0D1E0129050D98002098EF /* RecipeTableViewCell.swift in Sources */,
@@ -1807,6 +1823,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AC845A1B29063E9700BDE569 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.32.0;
+			};
+		};
 		AC98F18829047F8600DFBE6F /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -1818,6 +1842,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AC845A1C29063E9700BDE569 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC845A1B29063E9700BDE569 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		AC98F18929047F8600DFBE6F /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AC98F18829047F8600DFBE6F /* XCRemoteSwiftPackageReference "lottie-ios" */;
