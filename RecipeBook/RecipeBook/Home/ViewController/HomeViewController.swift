@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol HomeViewControllerDelegate: AnyObject {
+    func recipeSelected(recipeViewData: RecipeViewData)
+    func reloadTable()
+}
+
 final class HomeViewController: UIViewController {
     
     // MARK: - Private UI Properties
@@ -36,7 +41,12 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         baseView.delegate = self
-        baseView.set(viewModel: viewModel)
+        viewModel.delegate = self
+        viewModel.getRecipes { [weak self] recipesLoaded in
+            DispatchQueue.main.async {
+                self?.baseView.set(viewModel: self?.viewModel ?? HomeViewModel())
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,14 +54,6 @@ final class HomeViewController: UIViewController {
         setupNavigationBar()
     }
 }
-
-// MARK: - HomeView Delegate Implementation
-extension HomeViewController: HomeViewDelegate {
-    func favoriteRecipesTapped() {
-        coordinator.navigateToFavoriteRecipes()
-    }
-}
-
 
 // MARK: - Private Functions
 private extension HomeViewController {
@@ -69,5 +71,24 @@ private extension HomeViewController {
     @objc
     func searchAction() {
         coordinator.navigateToSearchRecipe()
+    }
+}
+
+// MARK: - HomeViewController Delegate Implementation
+extension HomeViewController: HomeViewControllerDelegate {
+    func recipeSelected(recipeViewData: RecipeViewData) {
+        print("calling coordinator")
+    }
+    
+    func reloadTable() {
+        baseView.reloadTable()
+    }
+}
+
+// MARK: - HomeView Delegate Implementation
+extension HomeViewController: HomeViewDelegate {
+    func favoriteRecipesTapped() {
+        let favoriteRecipes: [RecipeViewData] = viewModel.getFavoriteRecipes()
+        coordinator.navigateToFavoriteRecipes(recipeViewData: favoriteRecipes)
     }
 }

@@ -6,12 +6,48 @@
 //
 
 import Foundation
+import APIManager
 
 final class HomeViewModel {
     
+    // MARK: - Private Properties
+    private var offsetRequest: Int = 0
+    private var numberRecipeInRequest: Int = 10
+    private let api: HomeAPIProtocol
+    private var recipes: [RecipeViewData]
+    private var recipeItemsToHave: Int = 0
+    
+    // MARK: - Internal Properties
+    var currentCell: Int = 0
+    
+    // MARK: - Delegate
+    weak var delegate: HomeViewControllerDelegate?
+    
+    // MARK: - Internal Init
+    init(api: HomeAPIProtocol = HomeAPI()) {
+        self.api = api
+        offsetRequest = 0
+        numberRecipeInRequest = 10
+        recipes = [RecipeViewData]()
+    }
+    
     // MARK: - Computed Properties
     var numberOfRow: Int {
-        return 5
+        return recipes.count
+    }
+    
+    var viewData: RecipeViewData {
+        guard recipes.indices.contains(currentCell) else {
+            return RecipeViewData(id: 0,
+                                  title: String(),
+                                  image: String(),
+                                  preparationTime: String(),
+                                  servings: String(),
+                                  summary: String(),
+                                  isFavorite: false,
+                                  favoriteImage: String())
+        }
+        return recipes[currentCell]
     }
     
     var navigationTitle: String {
@@ -21,24 +57,95 @@ final class HomeViewModel {
     var searchTitle: String {
         return "Buscar"
     }
-    
-    var mainImage: String {
-        return "SomeImage"
+}
+
+// MARK: - Internal Functions
+extension HomeViewModel {
+    func recipeSelected(in cellIndex: Int) {
+        delegate?.recipeSelected(recipeViewData: recipes[cellIndex])
     }
     
-    var recipeTitle: String {
-        return "RecipeTitle"
+    func addRemoveFavorite(cellIndex: Int) {
+        recipes[cellIndex].isFavorite.toggle()
+        recipes[cellIndex].favoriteImage = recipes[cellIndex].isFavorite ? "favoriteFilled" : "favorite"
+        delegate?.reloadTable()
     }
     
-    var servings: String {
-        return "Servings"
+    func getFavoriteRecipes() -> [RecipeViewData] {
+        return recipes.filter { recipeViewData in
+            return recipeViewData.isFavorite
+        }
     }
     
-    var preparationTime: String {
-        return "Preparation time"
+    func getRecipes(callback: @escaping(_ recipesLoaded: Bool) -> Void) {
+        getRecipePreview(callback: callback)
+    }
+}
+
+// MARK: - Private Functions
+private extension HomeViewModel {
+    
+    func getRecipePreview(callback: @escaping(_ recipesLoaded: Bool) -> Void) {
+        let offsetStr: String = String(offsetRequest)
+        let numberStr: String = String(numberRecipeInRequest)
+        recipeItemsToHave = recipeItemsToHave + numberRecipeInRequest
+        api.getRecipesPreview(offset: offsetStr, number: numberStr) { [weak self] result in
+            switch result {
+            case .success(let recipePreview):
+                recipePreview.results.forEach { recipePreview in
+                    let recipeId: String = String(recipePreview.id)
+                    self?.getRecipeDetail(recipeId: recipeId, callback: callback)
+                }
+            case .failure(let httpError):
+                self?.handleError(httpError: httpError, callback: callback)
+            }
+        }
     }
     
-    var favoriteImage: String {
-        return "favoriteFilled"
+    func getRecipeDetail(recipeId: String, callback: @escaping(_ recipesLoaded: Bool) -> Void) {
+        api.getRecipeDetail(recipeId: recipeId) { [weak self] result in
+            switch result {
+            case .success(let recipe):
+                let preparationTime: String = String(recipe.readyInMinutes)
+                let servings: String = String(recipe.servings)
+                let recipeViewData: RecipeViewData = RecipeViewData(id: recipe.id,
+                                                                    title: recipe.title,
+                                                                    image: recipe.image,
+                                                                    preparationTime: "Tiempo de preparación \(preparationTime) min.",
+                                                                    servings: "Sirve \(servings) persona(s)",
+                                                                    summary: "Resumen: \n\(recipe.summary)",
+                                                                    isFavorite: false,
+                                                                    favoriteImage: "favorite")
+                self?.recipes.append(recipeViewData)
+                let recipesItems: Int = self?.recipes.count ?? 0
+                if recipesItems == self?.recipeItemsToHave {
+                    callback(true)
+                }
+            case .failure(let httpError):
+                self?.handleError(httpError: httpError, callback: callback)
+            }
+        }
+    }
+    
+    func handleError(httpError: HttpError, callback: @escaping(_ recipesLoaded: Bool) -> Void) {
+        switch httpError {
+        case .noConnectivity:
+            print("noConnectivity")
+        case .badRequest:
+            print("badRequest")
+        case .serverError:
+            print("serverError")
+        case .unauthorized:
+            print("unauthorized")
+        case .serviceUnavailable:
+            print("serviceUnavailable")
+        case .forbidden:
+            print("forbidden")
+        case .notFound:
+            print("notFound")
+        case .genericError(let rawValue):
+            print(rawValue)
+        }
+        callback(false)
     }
 }

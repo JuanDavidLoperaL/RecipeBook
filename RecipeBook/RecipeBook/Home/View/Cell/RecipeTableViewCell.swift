@@ -19,6 +19,9 @@ final class RecipeTableViewCell: UITableViewCell {
     
     private let mainImage: UIImageView = {
         let imageView: UIImageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
+        imageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         return imageView
     }()
     
@@ -55,6 +58,10 @@ final class RecipeTableViewCell: UITableViewCell {
         return button
     }()
     
+    // MARK: - Private Properties
+    private var viewModel: HomeViewModel?
+    private var cellIndex: Int = 0
+    
     // MARK: - Internal Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -88,7 +95,7 @@ extension RecipeTableViewCell: ViewConfigurationProtocol {
             view.topAnchor(toItem: containerView, toItemAttribute: .top)
             view.leadingAnchor(toItem: containerView, toItemAttribute: .leading)
             view.trailingAnchor(toItem: containerView, toItemAttribute: .trailing)
-            view.heightAnchor(toItem: contentView, toItemAttribute: .height, multiplier: 0.60)
+            view.heightAnchor(toItem: nil, toItemAttribute: .notAnAttribute, constant: 200.0)
         }
         
         recipeTitleLabel.layout.makeConstraints { view in
@@ -135,12 +142,14 @@ extension RecipeTableViewCell: ViewConfigurationProtocol {
 
 // MARK: - Internal Functions
 extension RecipeTableViewCell {
-    func set(viewModel: HomeViewModel) {
-        mainImage.image = UIImage(named: viewModel.mainImage)
-        recipeTitleLabel.text = viewModel.recipeTitle
-        servingsLabel.text = viewModel.servings
-        preparationTimeLabel.text = viewModel.preparationTime
-        addFavoriteButton.setImage(UIImage(named: viewModel.favoriteImage), for: .normal)
+    func set(viewModel: HomeViewModel, cellIndex: Int) {
+        self.cellIndex = cellIndex
+        self.viewModel = viewModel
+        mainImage.load(urlStr: viewModel.viewData.image)
+        recipeTitleLabel.text = viewModel.viewData.title
+        servingsLabel.text = viewModel.viewData.servings
+        preparationTimeLabel.text = viewModel.viewData.preparationTime
+        addFavoriteButton.setImage(UIImage(named: viewModel.viewData.favoriteImage), for: .normal)
     }
 }
 
@@ -148,11 +157,11 @@ extension RecipeTableViewCell {
 private extension RecipeTableViewCell {
     @objc
     func addFavoriteAction() {
-        print("adicionando a favoritos")
+        viewModel?.addRemoveFavorite(cellIndex: cellIndex)
     }
     
     @objc
     func seeMoreAction() {
-        print("adicionando a favoritos")
+        viewModel?.recipeSelected(in: cellIndex)
     }
 }

@@ -7,8 +7,11 @@
 
 import Foundation
 
-final class APIManager {
-    func request<T: Decodable>(with scheme: String, host: String, path: String, queryItems: [URLQueryItem], body: [String: Any]? = nil, method: HttpMethod = .get, completion: @escaping (Result<T, HttpError>) -> Void) {
+public final class APIManager {
+    
+    public init() {}
+    
+    public func request<T: Decodable>(with scheme: String, host: String, path: String, queryItems: [URLQueryItem] = [URLQueryItem](), body: [String: Any]? = nil, method: HttpMethod = .get, completion: @escaping (Result<T, HttpError>) -> Void) {
         let sessionRequest = URLSession(configuration: .default)
         guard let url: URL = getUrl(scheme: scheme, host: host, path: path, queryItems: queryItems) else {
             completion(.failure(.badRequest))
@@ -18,6 +21,7 @@ final class APIManager {
         request.httpBody = convertJsonForData(json: body)
         request.httpMethod = method.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        requestLog(request: request)
         sessionRequest.dataTask(with: request) { [weak self] data, response, error in
             guard error == nil else {
                 completion(.failure(.badRequest))
@@ -28,7 +32,7 @@ final class APIManager {
                 return
             }
             let decoder:JSONDecoder = JSONDecoder()
-            self?.requestLog(data: data, response: httpUrlResponse, error: error)
+            self?.responseLog(request: request, data: data, response: httpUrlResponse)
             if httpUrlResponse.statusCode >= 200 && httpUrlResponse.statusCode < 300 {
                 guard let data: Data = data else {
                     completion(.failure(.badRequest))
@@ -62,8 +66,8 @@ final class APIManager {
 }
 
 // MARK: - Private Function
-extension APIManager {
-    private func convertJsonForData(json: [String: Any]?) -> Data? {
+private extension APIManager {
+    func convertJsonForData(json: [String: Any]?) -> Data? {
         do {
             if let json = json {
                 let data = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
@@ -75,47 +79,41 @@ extension APIManager {
         return nil
     }
     
-    private func getUrl(scheme: String, host: String, path: String, queryItems: [URLQueryItem]) -> URL? {
+    func getUrl(scheme: String, host: String, path: String, queryItems: [URLQueryItem]) -> URL? {
         var urlComponent = URLComponents()
         urlComponent.scheme = scheme
         urlComponent.host = host
         urlComponent.path = path
-        urlComponent.queryItems = queryItems
+        urlComponent.queryItems = addTokenInRequest(currentQueryItems: queryItems)
         return urlComponent.url
     }
     
-    private func requestLog(data: Data?, response: HTTPURLResponse?, error: Error?) {
-        let urlString = response?.url?.absoluteString
-        let components = NSURLComponents(string: urlString ?? "")
-        
-        let path = "\(components?.path ?? "")"
-        let query = "\(components?.query ?? "")"
-        
-        var responseLog = "\n<---------- IN ----------\n"
-        if let urlString = urlString {
-            responseLog += "\(urlString)"
-            responseLog += "\n\n"
+    func addTokenInRequest(currentQueryItems: [URLQueryItem]) -> [URLQueryItem] {
+        guard let apiKey: String = Bundle.main.infoDictionary?["APIToken"] as? String else {
+            return currentQueryItems.isEmpty ? [URLQueryItem]() : currentQueryItems
         }
-        
-        if let statusCode =  response?.statusCode {
-            responseLog += "HTTP \(statusCode) \(path)?\(query)\n"
-        }
-        if let host = components?.host {
-            responseLog += "Host: \(host)\n"
-        }
-        for (key,value) in response?.allHeaderFields ?? [:] {
-            responseLog += "\(key): \(value)\n"
-        }
-        if let body = data {
-            let bodyString = NSString(data: body, encoding: String.Encoding.utf8.rawValue) ?? ""
-            responseLog += "\n\(bodyString)\n"
-        }
-        if let error = error {
-            responseLog += "\nError: \(error.localizedDescription)\n"
-        }
-        
-        responseLog += "<------------------------\n"
-        debugPrint(responseLog)
+        let tokenQuery: URLQueryItem = URLQueryItem(name: "apiKey", value: apiKey)
+        var newQueryItems: [URLQueryItem] = currentQueryItems.isEmpty ? [URLQueryItem]() : currentQueryItems
+        newQueryItems.append(tokenQuery)
+        return newQueryItems
+    }
+    
+    func requestLog(request: URLRequest) {
+        print("-- 🚀 Request Started  🚀 -- ")
+        print("URL: \(request.url?.absoluteString ?? "Not URL detected")")
+        print("Http Method: \(request.httpMethod ?? "Not Http Method detected")")
+        print("Parameters: \(request.allHTTPHeaderFields ?? [String: String]())")
+        print("--  Request End -- ")
+    }
+    
+    func responseLog(request: URLRequest, data: Data?, response: HTTPURLResponse?) {
+        print("--  📥 Response  📥 -- ")
+        print("URL: \(request.url?.absoluteString ?? "Not URL detected")")
+        print("Http Method: \(request.httpMethod ?? "Not Http Method detected")")
+        print("Parameters: \(request.allHTTPHeaderFields ?? [String: String]())")
+        print("HttpStatus: \(response?.statusCode ?? 0)")
+        print("JSON Body: \(String(data: data ?? Data(), encoding: .utf8) ?? "Not JSON detected")")
+        print("--  Response End -- ")
     }
 }
 
