@@ -1,14 +1,14 @@
 //
-//  RecipeBookTests.swift
-//  RecipeBookTests
+//  APIManagerTests.swift
+//  APIManagerTests
 //
-//  Created by Juan david Lopera lopez on 22/10/22.
+//  Created by Juan david Lopera lopez on 23/10/22.
 //
 
 import XCTest
-@testable import RecipeBook
+@testable import APIManager
 
-class RecipeBookTests: XCTestCase {
+class APIManagerTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

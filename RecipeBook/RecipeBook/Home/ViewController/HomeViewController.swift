@@ -5,7 +5,15 @@
 //  Created by Juan david Lopera lopez on 22/10/22.
 //
 
+import DesignSystem
 import UIKit
+
+protocol HomeViewControllerDelegate: AnyObject {
+    func recipeSelected(recipeViewData: RecipeViewData)
+    func reloadTable()
+    func addFavoriteFail()
+    func isLoading(_ isloading: Bool)
+}
 
 final class HomeViewController: UIViewController {
     
@@ -36,22 +44,17 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         baseView.delegate = self
-        baseView.set(viewModel: viewModel)
+        viewModel.delegate = self
+        getRecipes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+        viewModel.syncRecipes()
+        reloadTable()
     }
 }
-
-// MARK: - HomeView Delegate Implementation
-extension HomeViewController: HomeViewDelegate {
-    func favoriteRecipesTapped() {
-        coordinator.navigateToFavoriteRecipes()
-    }
-}
-
 
 // MARK: - Private Functions
 private extension HomeViewController {
@@ -68,6 +71,69 @@ private extension HomeViewController {
     
     @objc
     func searchAction() {
-        print("Buscando")
+        coordinator.navigateToSearchRecipe()
+    }
+    
+    func getRecipes() {
+        viewModel.getRecipes { [weak self] recipesLoaded in
+            DispatchQueue.main.async {
+                if recipesLoaded {
+                    self?.viewModel.syncRecipes()
+                    self?.baseView.set(viewModel: self?.viewModel ?? HomeViewModel())
+                } else {
+                    let okAction: UIAlertAction = UIAlertAction(title: "Intentar nuevamente", style: .default) { _ in
+                        self?.getRecipes()
+                    }
+                    self?.showAlert(title: self?.viewModel.alertTitle ?? "Error",
+                                    message: self?.viewModel.alertMessage ?? "Error generico",
+                                    actions: [okAction])
+                }
+            }
+        }
+    }
+}
+
+// MARK: - HomeViewController Delegate Implementation
+extension HomeViewController: HomeViewControllerDelegate {
+    func recipeSelected(recipeViewData: RecipeViewData) {
+        coordinator.navigateToDetail(recipeViewData: recipeViewData)
+    }
+    
+    func isLoading(_ isloading: Bool) {
+        DispatchQueue.main.async {
+            if isloading {
+                self.showLoading()
+            } else {
+                self.hideLoading()
+            }
+        }
+    }
+    
+    func reloadTable() {
+        baseView.reloadTable()
+    }
+    
+    func addFavoriteFail() {
+        let okAction: UIAlertAction = UIAlertAction(title: "OK",
+                                                    style: .default,
+                                                    handler: nil)
+        showAlert(title: viewModel.alertTitle, message: viewModel.alertMessage, actions: [okAction])
+    }
+}
+
+// MARK: - HomeView Delegate Implementation
+extension HomeViewController: HomeViewDelegate {
+    func favoriteRecipesTapped() {
+        let favoriteRecipes: [RecipeViewData] = viewModel.getFavoriteRecipes()
+        if favoriteRecipes.isEmpty {
+            let okAction: UIAlertAction = UIAlertAction(title: "OK",
+                                                        style: .default,
+                                                        handler: nil)
+            showAlert(title: viewModel.alertTitle,
+                      message: viewModel.alertMessage,
+                      actions: [okAction])
+        } else {
+            coordinator.navigateToFavoriteRecipes(recipeViewData: favoriteRecipes)
+        }
     }
 }

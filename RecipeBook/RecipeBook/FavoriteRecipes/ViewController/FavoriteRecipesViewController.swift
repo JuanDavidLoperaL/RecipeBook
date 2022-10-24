@@ -18,7 +18,8 @@ final class FavoriteRecipesViewController: UIViewController {
     private let viewModel: FavoriteRecipesViewModel
     
     // MARK: - Internal Init
-    init(coordinator: RecipesCoordinator, viewModel: FavoriteRecipesViewModel = FavoriteRecipesViewModel()) {
+    init(coordinator: RecipesCoordinator,
+         viewModel: FavoriteRecipesViewModel = FavoriteRecipesViewModel()) {
         self.coordinator = coordinator
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)

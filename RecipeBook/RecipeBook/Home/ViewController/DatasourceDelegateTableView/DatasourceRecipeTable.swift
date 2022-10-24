@@ -5,7 +5,6 @@
 //  Created by Juan david Lopera lopez on 23/10/22.
 //
 
-import DesignSystem
 import UIKit
 
 final class DatasourceRecipeTable: NSObject, UITableViewDataSource {
@@ -18,7 +17,8 @@ final class DatasourceRecipeTable: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: RecipeTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.set(viewModel: viewModel)
+        viewModel.currentCell = indexPath.row
+        cell.set(viewModel: viewModel, cellIndex: indexPath.row)
         return cell
     }
 }
