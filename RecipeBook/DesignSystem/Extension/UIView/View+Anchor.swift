@@ -15,7 +15,7 @@ extension UIView {
                 .topAnchor(toItem: view, toItemAttribute: .topMargin)
                 .leadingAnchor(toItem: view, toItemAttribute: .leading)
                 .trailingAnchor(toItem: view, toItemAttribute: .trailing)
-                .bottomAnchor(toItem: view, toItemAttribute: .bottom)
+                .bottomAnchor(toItem: view, toItemAttribute: .bottomMargin)
         }
     }
 

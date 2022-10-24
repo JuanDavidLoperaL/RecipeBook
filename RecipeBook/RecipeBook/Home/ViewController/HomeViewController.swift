@@ -45,25 +45,14 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         baseView.delegate = self
         viewModel.delegate = self
-        viewModel.getRecipes { [weak self] recipesLoaded in
-            DispatchQueue.main.async {
-                if recipesLoaded {
-                    self?.viewModel.syncRecipes()
-                    self?.baseView.set(viewModel: self?.viewModel ?? HomeViewModel())
-                } else {
-                    let okAction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    self?.showAlert(title: self?.viewModel.alertTitle ?? "Error",
-                                    message: self?.viewModel.alertMessage ?? "Error generico",
-                                    actions: [okAction])
-                }
-            }
-        }
+        getRecipes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
         viewModel.syncRecipes()
+        reloadTable()
     }
 }
 
@@ -84,12 +73,30 @@ private extension HomeViewController {
     func searchAction() {
         coordinator.navigateToSearchRecipe()
     }
+    
+    func getRecipes() {
+        viewModel.getRecipes { [weak self] recipesLoaded in
+            DispatchQueue.main.async {
+                if recipesLoaded {
+                    self?.viewModel.syncRecipes()
+                    self?.baseView.set(viewModel: self?.viewModel ?? HomeViewModel())
+                } else {
+                    let okAction: UIAlertAction = UIAlertAction(title: "Intentar nuevamente", style: .default) { _ in
+                        self?.getRecipes()
+                    }
+                    self?.showAlert(title: self?.viewModel.alertTitle ?? "Error",
+                                    message: self?.viewModel.alertMessage ?? "Error generico",
+                                    actions: [okAction])
+                }
+            }
+        }
+    }
 }
 
 // MARK: - HomeViewController Delegate Implementation
 extension HomeViewController: HomeViewControllerDelegate {
     func recipeSelected(recipeViewData: RecipeViewData) {
-        print("calling coordinator")
+        coordinator.navigateToDetail(recipeViewData: recipeViewData)
     }
     
     func isLoading(_ isloading: Bool) {

@@ -27,6 +27,9 @@
 		AC22EC512906703200981483 /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC22EC502906703200981483 /* LoadView.swift */; };
 		AC22EC542906711500981483 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC22EC532906711500981483 /* UIViewController+Extension.swift */; };
 		AC22EC572906DD3400981483 /* SearchRecipeAPIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC22EC562906DD3400981483 /* SearchRecipeAPIMock.swift */; };
+		AC22EC5B2906FA4C00981483 /* DetailRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC22EC5A2906FA4C00981483 /* DetailRecipeView.swift */; };
+		AC22EC5E290704DC00981483 /* DetailRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC22EC5D290704DB00981483 /* DetailRecipeViewController.swift */; };
+		AC22EC61290705A200981483 /* DetailRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC22EC60290705A200981483 /* DetailRecipeViewModel.swift */; };
 		AC7309A62904A5FB00A7CBEA /* ViewCodeDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309A52904A5FB00A7CBEA /* ViewCodeDSL.swift */; };
 		AC7309A92904A68E00A7CBEA /* View+Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309A82904A68E00A7CBEA /* View+Anchor.swift */; };
 		AC7309B02904AD7400A7CBEA /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309AF2904AD7400A7CBEA /* TextStyle.swift */; };
@@ -187,6 +190,9 @@
 		AC22EC502906703200981483 /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
 		AC22EC532906711500981483 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		AC22EC562906DD3400981483 /* SearchRecipeAPIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeAPIMock.swift; sourceTree = "<group>"; };
+		AC22EC5A2906FA4C00981483 /* DetailRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecipeView.swift; sourceTree = "<group>"; };
+		AC22EC5D290704DB00981483 /* DetailRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecipeViewController.swift; sourceTree = "<group>"; };
+		AC22EC60290705A200981483 /* DetailRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecipeViewModel.swift; sourceTree = "<group>"; };
 		AC7309A52904A5FB00A7CBEA /* ViewCodeDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodeDSL.swift; sourceTree = "<group>"; };
 		AC7309A82904A68E00A7CBEA /* View+Anchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Anchor.swift"; sourceTree = "<group>"; };
 		AC7309AF2904AD7400A7CBEA /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
@@ -488,6 +494,40 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		AC22EC582906F97300981483 /* DetailRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				AC22EC5F2907059700981483 /* ViewModel */,
+				AC22EC5C290704D100981483 /* ViewController */,
+				AC22EC592906F97E00981483 /* View */,
+			);
+			path = DetailRecipe;
+			sourceTree = "<group>";
+		};
+		AC22EC592906F97E00981483 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AC22EC5A2906FA4C00981483 /* DetailRecipeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AC22EC5C290704D100981483 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AC22EC5D290704DB00981483 /* DetailRecipeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		AC22EC5F2907059700981483 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC22EC60290705A200981483 /* DetailRecipeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		AC7309A42904A5EC00A7CBEA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -735,6 +775,7 @@
 				ACB7690B290616C50085AE96 /* Extension */,
 				ACB769012905C5230085AE96 /* Environment */,
 				AC7309DB2904CA2F00A7CBEA /* Coordinator */,
+				AC22EC582906F97300981483 /* DetailRecipe */,
 				ACB768C72905AC360085AE96 /* SearchRecipe */,
 				AC0D1E1429051BEB002098EF /* FavoriteRecipes */,
 				AC7309C42904B6F400A7CBEA /* Home */,
@@ -1255,6 +1296,7 @@
 				AC0D1E1829051C32002098EF /* FavoriteRecipesView.swift in Sources */,
 				ACB768D02905B2920085AE96 /* SearchRecipeViewModel.swift in Sources */,
 				AC0D1E0D290513A2002098EF /* DelegateRecipeTable.swift in Sources */,
+				AC22EC5B2906FA4C00981483 /* DetailRecipeView.swift in Sources */,
 				AC8A362F29049C1E00A43188 /* SplashView.swift in Sources */,
 				ACB769002905C4D20085AE96 /* HomeAPI.swift in Sources */,
 				AC22EC4D2906697400981483 /* DelegateSearchRecipeTable.swift in Sources */,
@@ -1266,9 +1308,11 @@
 				ACB769062905C73E0085AE96 /* Recipe.swift in Sources */,
 				AC0D1E0129050D98002098EF /* RecipeTableViewCell.swift in Sources */,
 				AC0D1E2029051CFD002098EF /* DelegateFavoriteRecipesTableView.swift in Sources */,
+				AC22EC61290705A200981483 /* DetailRecipeViewModel.swift in Sources */,
 				AC7309DA2904C93D00A7CBEA /* HomeViewModel.swift in Sources */,
 				ACB7690D290616D10085AE96 /* UIImageView.swift in Sources */,
 				AC0D1E2329051E6A002098EF /* FavoriteRecipesViewModel.swift in Sources */,
+				AC22EC5E290704DC00981483 /* DetailRecipeViewController.swift in Sources */,
 				AC22EC482906690100981483 /* SearchRecipeCell.swift in Sources */,
 				AC0D1E28290520BE002098EF /* FavoriteRecipesViewController.swift in Sources */,
 				AC98F15B29047E0400DFBE6F /* SceneDelegate.swift in Sources */,
@@ -1597,7 +1641,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				APIToken = 23fdadaa1b5746d4abeaada1819398e4;
+				APIToken = be5829ea73da4b658d88271e9dab8942;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				Base_URL = api.spoonacular.com;
@@ -1627,7 +1671,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				APIToken = 23fdadaa1b5746d4abeaada1819398e4;
+				APIToken = be5829ea73da4b658d88271e9dab8942;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				Base_URL = api.spoonacular.com;

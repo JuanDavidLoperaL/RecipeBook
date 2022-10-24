@@ -66,7 +66,7 @@ private extension SearchRecipeViewController {
 extension SearchRecipeViewController: SearchRecipeViewControllerDelegate {
     
     func recipeSelected(recipeViewData: RecipeViewData) {
-        print(recipeViewData)
+        coordinator.navigateToDetail(recipeViewData: recipeViewData)
     }
     
     func showMessage() {

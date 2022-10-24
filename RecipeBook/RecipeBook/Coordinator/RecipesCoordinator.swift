@@ -39,4 +39,11 @@ final class RecipesCoordinator {
         let searchRecipeViewController: SearchRecipeViewController = SearchRecipeViewController(coordinator: self)
         self.navigationController.pushViewController(searchRecipeViewController, animated: true)
     }
+    
+    func navigateToDetail(recipeViewData: RecipeViewData) {
+        let viewModel: DetailRecipeViewModel = DetailRecipeViewModel(recipeViewData: recipeViewData)
+        let detailViewController: DetailRecipeViewController = DetailRecipeViewController(coordinator: self,
+                                                                                          viewModel: viewModel)
+        self.navigationController.pushViewController(detailViewController, animated: true)
+    }
 }
