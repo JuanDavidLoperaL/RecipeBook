@@ -95,24 +95,27 @@ extension HomeViewModel {
     func getRecipes(callback: @escaping(_ recipesLoaded: Bool) -> Void) {
         getRecipePreview(callback: callback)
     }
+    
+    func syncRecipes() {
+        if !recipes.isEmpty {
+            let recipesSaved = RealmHandlerSingleton.shared.getRecipesSaved()
+            for index in 0...recipes.count - 1 {
+                if let recoveryObject = recipesSaved.first(where: { $0.id == recipes[index].id}) {
+                    recipes[index] = recoveryObject
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Private Functions
 private extension HomeViewModel {
     
-    func syncRecipes() {
-        let recipesSaved = RealmHandlerSingleton.shared.getRecipesSaved()
-        for index in 0...recipes.count - 1 {
-            if let recoveryObject = recipesSaved.first(where: { $0.id == recipes[index].id}) {
-                recipes[index] = recoveryObject
-            }
-        }
-    }
-    
     func getRecipePreview(callback: @escaping(_ recipesLoaded: Bool) -> Void) {
         let offsetStr: String = String(offsetRequest)
         let numberStr: String = String(numberRecipeInRequest)
         recipeItemsToHave = recipeItemsToHave + numberRecipeInRequest
+        delegate?.isLoading(true)
         api.getRecipesPreview(offset: offsetStr, number: numberStr) { [weak self] result in
             switch result {
             case .success(let recipePreview):
@@ -143,7 +146,7 @@ private extension HomeViewModel {
                 self?.recipes.append(recipeViewData)
                 let recipesItems: Int = self?.recipes.count ?? 0
                 if recipesItems == self?.recipeItemsToHave {
-                    self?.syncRecipes()
+                    self?.delegate?.isLoading(false)
                     callback(true)
                 }
             case .failure(let httpError):
@@ -153,6 +156,7 @@ private extension HomeViewModel {
     }
     
     func handleError(httpError: HttpError, callback: @escaping(_ recipesLoaded: Bool) -> Void) {
+        delegate?.isLoading(false)
         switch httpError {
         case .badRequest, .unauthorized, .forbidden, .notFound:
             alertTitle = "Ups..."

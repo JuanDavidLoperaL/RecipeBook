@@ -7,6 +7,13 @@
 
 import UIKit
 
+protocol SearchRecipeViewControllerDelegate: AnyObject {
+    func showMessage()
+    func reloadTable()
+    func recipeSelected(recipeViewData: RecipeViewData)
+    func isLoading(_ isloading: Bool)
+}
+
 final class SearchRecipeViewController: UIViewController {
     
     // MARK: - Private UI Properties
@@ -36,6 +43,7 @@ final class SearchRecipeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         baseView.set(viewModel: viewModel)
     }
     
@@ -51,5 +59,35 @@ private extension SearchRecipeViewController {
         self.title = viewModel.navigationTitle
         self.navigationItem.setHidesBackButton(false, animated: true)
         self.navigationController?.customBackButton()
+    }
+}
+
+// MARK: - SearchRecipeViewController Delegate Implementation
+extension SearchRecipeViewController: SearchRecipeViewControllerDelegate {
+    
+    func recipeSelected(recipeViewData: RecipeViewData) {
+        print(recipeViewData)
+    }
+    
+    func showMessage() {
+        let okAction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        showAlert(title: viewModel.alertTitle, message: viewModel.alertMessage, actions: [okAction])
+    }
+    
+    func reloadTable() {
+        DispatchQueue.main.async {
+            self.viewModel.syncRecipes()
+            self.baseView.reloadTable()
+        }
+    }
+    
+    func isLoading(_ isloading: Bool) {
+        DispatchQueue.main.async {
+            if isloading {
+                self.showLoading()
+            } else {
+                self.hideLoading()
+            }
+        }
     }
 }

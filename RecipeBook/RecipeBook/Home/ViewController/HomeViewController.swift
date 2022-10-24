@@ -5,12 +5,14 @@
 //  Created by Juan david Lopera lopez on 22/10/22.
 //
 
+import DesignSystem
 import UIKit
 
 protocol HomeViewControllerDelegate: AnyObject {
     func recipeSelected(recipeViewData: RecipeViewData)
     func reloadTable()
     func addFavoriteFail()
+    func isLoading(_ isloading: Bool)
 }
 
 final class HomeViewController: UIViewController {
@@ -46,6 +48,7 @@ final class HomeViewController: UIViewController {
         viewModel.getRecipes { [weak self] recipesLoaded in
             DispatchQueue.main.async {
                 if recipesLoaded {
+                    self?.viewModel.syncRecipes()
                     self?.baseView.set(viewModel: self?.viewModel ?? HomeViewModel())
                 } else {
                     let okAction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -60,6 +63,7 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+        viewModel.syncRecipes()
     }
 }
 
@@ -86,6 +90,16 @@ private extension HomeViewController {
 extension HomeViewController: HomeViewControllerDelegate {
     func recipeSelected(recipeViewData: RecipeViewData) {
         print("calling coordinator")
+    }
+    
+    func isLoading(_ isloading: Bool) {
+        DispatchQueue.main.async {
+            if isloading {
+                self.showLoading()
+            } else {
+                self.hideLoading()
+            }
+        }
     }
     
     func reloadTable() {
