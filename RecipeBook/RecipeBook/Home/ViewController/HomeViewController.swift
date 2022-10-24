@@ -44,7 +44,14 @@ final class HomeViewController: UIViewController {
         viewModel.delegate = self
         viewModel.getRecipes { [weak self] recipesLoaded in
             DispatchQueue.main.async {
-                self?.baseView.set(viewModel: self?.viewModel ?? HomeViewModel())
+                if recipesLoaded {
+                    self?.baseView.set(viewModel: self?.viewModel ?? HomeViewModel())
+                } else {
+                    let okAction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    self?.showAlert(title: self?.viewModel.alertTitle ?? "Error",
+                                    message: self?.viewModel.alertMessage ?? "Error generico",
+                                    actions: [okAction])
+                }
             }
         }
     }
@@ -89,6 +96,15 @@ extension HomeViewController: HomeViewControllerDelegate {
 extension HomeViewController: HomeViewDelegate {
     func favoriteRecipesTapped() {
         let favoriteRecipes: [RecipeViewData] = viewModel.getFavoriteRecipes()
-        coordinator.navigateToFavoriteRecipes(recipeViewData: favoriteRecipes)
+        if favoriteRecipes.isEmpty {
+            let okAction: UIAlertAction = UIAlertAction(title: "OK",
+                                                        style: .default,
+                                                        handler: nil)
+            showAlert(title: viewModel.alertTitle,
+                      message: viewModel.alertMessage,
+                      actions: [okAction])
+        } else {
+            coordinator.navigateToFavoriteRecipes(recipeViewData: favoriteRecipes)
+        }
     }
 }

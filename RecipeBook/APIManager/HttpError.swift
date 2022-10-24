@@ -8,7 +8,6 @@
 import Foundation
 
 public enum HttpError: Error, Equatable {
-    case noConnectivity
     case badRequest
     case serverError
     case unauthorized

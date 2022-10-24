@@ -19,6 +19,7 @@ final class HomeViewModelTest: XCTestCase {
     }
 
     override func tearDownWithError() throws {
+        api = nil
         viewModel = nil
     }
 
@@ -30,7 +31,7 @@ final class HomeViewModelTest: XCTestCase {
         XCTAssertEqual(viewModel.searchTitle, "Buscar")
     }
 
-    func testGetRecipesWithSuccess() {
+    func testGetRecipesWithSuccess() throws {
         api.shouldFail = false
         viewModel.getRecipes { [self] recipesLoaded in
             XCTAssertTrue(recipesLoaded)
@@ -40,6 +41,16 @@ final class HomeViewModelTest: XCTestCase {
             XCTAssertEqual(viewModel.viewData.title, "Recipe")
             XCTAssertEqual(viewModel.viewData.preparationTime, "Tiempo de preparación 10 min.")
             XCTAssertEqual(viewModel.viewData.servings, "Sirve 2 persona(s)")
+        }
+    }
+    
+    func testGetRecipesWithFailure() throws {
+        api.shouldFail = true
+        viewModel.getRecipes { [self] recipesLoaded in
+            XCTAssertFalse(recipesLoaded)
+            XCTAssertEqual(viewModel.numberOfRow, 0)
+            XCTAssertEqual(viewModel.alertTitle, "Ups...")
+            XCTAssertEqual(viewModel.alertMessage, "Lo siento, parece que ocurrio un error al momento de obtener los datos, si el problema persiste entonces comunicate a este email juandavidl2011.jdll@gmail.com")
         }
     }
 }
