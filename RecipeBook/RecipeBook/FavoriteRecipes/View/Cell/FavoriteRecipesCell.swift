@@ -108,9 +108,9 @@ extension FavoriteRecipesCell: ViewConfigurationProtocol {
 // MARK: - Internal Functions
 extension FavoriteRecipesCell {
     func set(viewModel: FavoriteRecipesViewModel) {
-        mainImage.image = UIImage(named: viewModel.mainImage)
-        recipeTitleLabel.text = viewModel.recipeTitle
-        servingsLabel.text = viewModel.servings
-        preparationTimeLabel.text = viewModel.preparationTime
+        mainImage.load(urlStr: viewModel.viewData.image)
+        recipeTitleLabel.text = viewModel.viewData.title
+        servingsLabel.text = viewModel.viewData.servings
+        preparationTimeLabel.text = viewModel.viewData.preparationTime
     }
 }

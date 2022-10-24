@@ -68,9 +68,17 @@ extension HomeViewModel {
     }
     
     func addRemoveFavorite(cellIndex: Int) {
-        recipes[cellIndex].isFavorite.toggle()
-        recipes[cellIndex].favoriteImage = recipes[cellIndex].isFavorite ? "favoriteFilled" : "favorite"
-        delegate?.reloadTable()
+        RealmHandlerSingleton.shared.save(object: recipes[cellIndex]) { didSaveObject in
+            if didSaveObject {
+                recipes[cellIndex].isFavorite.toggle()
+                recipes[cellIndex].favoriteImage = recipes[cellIndex].isFavorite ? "favoriteFilled" : "favorite"
+                delegate?.reloadTable()
+            } else {
+                recipes[cellIndex].isFavorite = false
+                alertTitle = "Error"
+                alertMessage = "No pudimos añadir a favortios la receta, intentalo de nuevo."
+            }
+        }
     }
     
     func getFavoriteRecipes() -> [RecipeViewData] {
@@ -91,6 +99,15 @@ extension HomeViewModel {
 
 // MARK: - Private Functions
 private extension HomeViewModel {
+    
+    func syncRecipes() {
+        let recipesSaved = RealmHandlerSingleton.shared.getRecipesSaved()
+        for index in 0...recipes.count - 1 {
+            if let recoveryObject = recipesSaved.first(where: { $0.id == recipes[index].id}) {
+                recipes[index] = recoveryObject
+            }
+        }
+    }
     
     func getRecipePreview(callback: @escaping(_ recipesLoaded: Bool) -> Void) {
         let offsetStr: String = String(offsetRequest)
@@ -126,6 +143,7 @@ private extension HomeViewModel {
                 self?.recipes.append(recipeViewData)
                 let recipesItems: Int = self?.recipes.count ?? 0
                 if recipesItems == self?.recipeItemsToHave {
+                    self?.syncRecipes()
                     callback(true)
                 }
             case .failure(let httpError):

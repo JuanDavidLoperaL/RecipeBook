@@ -30,7 +30,8 @@ final class RecipesCoordinator {
     }
     
     func navigateToFavoriteRecipes(recipeViewData: [RecipeViewData]) {
-        let favoriteRecipesViewController: FavoriteRecipesViewController = FavoriteRecipesViewController(coordinator: self)
+        let viewModel: FavoriteRecipesViewModel = FavoriteRecipesViewModel(favoriteRecipes: recipeViewData)
+        let favoriteRecipesViewController: FavoriteRecipesViewController = FavoriteRecipesViewController(coordinator: self, viewModel: viewModel)
         self.navigationController.pushViewController(favoriteRecipesViewController, animated: true)
     }
     
