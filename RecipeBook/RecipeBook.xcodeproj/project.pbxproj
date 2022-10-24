@@ -37,6 +37,7 @@
 		AC7309D82904C7A000A7CBEA /* UIView+ExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309D72904C7A000A7CBEA /* UIView+ExtensionTest.swift */; };
 		AC7309DA2904C93D00A7CBEA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309D92904C93D00A7CBEA /* HomeViewModel.swift */; };
 		AC7309DD2904CA4600A7CBEA /* RecipesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7309DC2904CA4600A7CBEA /* RecipesCoordinator.swift */; };
+		AC845A1A2906259900BDE569 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC845A192906259900BDE569 /* UIViewController.swift */; };
 		AC8A362F29049C1E00A43188 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A362E29049C1E00A43188 /* SplashView.swift */; };
 		AC8A363B2904A1C000A43188 /* DesignSystem.docc in Sources */ = {isa = PBXBuildFile; fileRef = AC8A363A2904A1C000A43188 /* DesignSystem.docc */; };
 		AC8A36412904A1C000A43188 /* DesignSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC8A36372904A1C000A43188 /* DesignSystem.framework */; };
@@ -188,6 +189,7 @@
 		AC7309D72904C7A000A7CBEA /* UIView+ExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ExtensionTest.swift"; sourceTree = "<group>"; };
 		AC7309D92904C93D00A7CBEA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		AC7309DC2904CA4600A7CBEA /* RecipesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesCoordinator.swift; sourceTree = "<group>"; };
+		AC845A192906259900BDE569 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		AC8A362E29049C1E00A43188 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		AC8A36372904A1C000A43188 /* DesignSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesignSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC8A36392904A1C000A43188 /* DesignSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DesignSystem.h; sourceTree = "<group>"; };
@@ -816,6 +818,7 @@
 			isa = PBXGroup;
 			children = (
 				ACB7690C290616D10085AE96 /* UIImageView.swift */,
+				AC845A192906259900BDE569 /* UIViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1154,6 +1157,7 @@
 			files = (
 				AC98F15929047E0400DFBE6F /* AppDelegate.swift in Sources */,
 				AC0D1E1E29051CE0002098EF /* DatasourceFavoriteRecipesTableView.swift in Sources */,
+				AC845A1A2906259900BDE569 /* UIViewController.swift in Sources */,
 				AC0D1E0429051202002098EF /* DatasourceRecipeTable.swift in Sources */,
 				AC0D1E1829051C32002098EF /* FavoriteRecipesView.swift in Sources */,
 				ACB768D02905B2920085AE96 /* SearchRecipeViewModel.swift in Sources */,

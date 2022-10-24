@@ -41,12 +41,6 @@ final class FavoriteRecipesCell: UITableViewCell {
         return label
     }()
     
-    private let favoriteButton: UIButton = {
-        let button: UIButton = UIButton()
-        button.addTarget(self, action: #selector(favoriteAction), for: .touchDown)
-        return button
-    }()
-    
     // MARK: - Internal Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -62,7 +56,7 @@ final class FavoriteRecipesCell: UITableViewCell {
 // MARK: - ViewCode Configuration
 extension FavoriteRecipesCell: ViewConfigurationProtocol {
     func viewHierarchy() {
-        [mainImage, recipeTitleLabel, servingsLabel, preparationTimeLabel, favoriteButton].forEach { view in
+        [mainImage, recipeTitleLabel, servingsLabel, preparationTimeLabel].forEach { view in
             containerView.addSubview(view)
         }
         contentView.addSubview(containerView)
@@ -103,13 +97,6 @@ extension FavoriteRecipesCell: ViewConfigurationProtocol {
             view.heightAnchor(toItem: nil, toItemAttribute: .notAnAttribute, constant: 13.0)
             view.bottomAnchor(toItem: containerView, toItemAttribute: .bottom, constant: -10.0)
         }
-        
-        favoriteButton.layout.makeConstraints { view in
-            view.topAnchor(toItem: containerView, toItemAttribute: .top, constant: 5.0)
-            view.trailingAnchor(toItem: containerView, toItemAttribute: .trailing, constant: -10.0)
-            view.heightAnchor(toItem: nil, toItemAttribute: .notAnAttribute, constant: 30.0)
-            view.widthAnchor(toItem: nil, toItemAttribute: .notAnAttribute, constant: 30.0)
-        }
     }
     
     func viewExtraConfiguration() {
@@ -125,14 +112,5 @@ extension FavoriteRecipesCell {
         recipeTitleLabel.text = viewModel.recipeTitle
         servingsLabel.text = viewModel.servings
         preparationTimeLabel.text = viewModel.preparationTime
-        favoriteButton.setImage(UIImage(named: viewModel.favoriteImage), for: .normal)
-    }
-}
-
-// MARK: - Private Functions
-private extension FavoriteRecipesCell {
-    @objc
-    func favoriteAction() {
-        print("adicionando a favoritos")
     }
 }

@@ -16,6 +16,8 @@ final class HomeViewModel {
     private let api: HomeAPIProtocol
     private var recipes: [RecipeViewData]
     private var recipeItemsToHave: Int = 0
+    private(set) var alertTitle: String = String()
+    private(set) var alertMessage: String = String()
     
     // MARK: - Internal Properties
     var currentCell: Int = 0
@@ -72,9 +74,14 @@ extension HomeViewModel {
     }
     
     func getFavoriteRecipes() -> [RecipeViewData] {
-        return recipes.filter { recipeViewData in
+        let favoritesRecipes: [RecipeViewData] = recipes.filter { recipeViewData in
             return recipeViewData.isFavorite
         }
+        if favoritesRecipes.isEmpty {
+            alertTitle = "Sin Favoritos"
+            alertMessage = "No tienes recetas favoritas, animate a adicionar algunas recetas a favoritos para que luego puedas entrar en esta sección, recuerda, es solo darle un toque al corazón que se encuentra al lado arriba-derecho de cada card de recetas."
+        }
+        return favoritesRecipes
     }
     
     func getRecipes(callback: @escaping(_ recipesLoaded: Bool) -> Void) {
@@ -129,23 +136,17 @@ private extension HomeViewModel {
     
     func handleError(httpError: HttpError, callback: @escaping(_ recipesLoaded: Bool) -> Void) {
         switch httpError {
-        case .noConnectivity:
-            print("noConnectivity")
-        case .badRequest:
-            print("badRequest")
-        case .serverError:
-            print("serverError")
-        case .unauthorized:
-            print("unauthorized")
-        case .serviceUnavailable:
-            print("serviceUnavailable")
-        case .forbidden:
-            print("forbidden")
-        case .notFound:
-            print("notFound")
-        case .genericError(let rawValue):
-            print(rawValue)
+        case .badRequest, .unauthorized, .forbidden, .notFound:
+            alertTitle = "Ups..."
+            alertMessage = "Lo siento, parece que ocurrio un error al momento de obtener los datos, si el problema persiste entonces comunicate a este email juandavidl2011.jdll@gmail.com"
+        case .serverError, .serviceUnavailable:
+            alertTitle = "Servidor down"
+            alertMessage = "Lo siento, parece que ocurrio un error al momento de obtener los datos, vamos a trabajar para restablecer los servicios lo mas rapido posible, si el problema persiste entonces comunicate a este email juandavidl2011.jdll@gmail.com"
+        case .genericError(let value):
+            alertTitle = "Ups..."
+            alertMessage = "Lo siento, parece que ocurrio un error al momento de obtener los datos, el error es el \(value)\nvamos a trabajar para solucionar este problema lo mas rapido posible, si el problema persiste entonces comunicate a este email juandavidl2011.jdll@gmail.com"
         }
+        recipes = [RecipeViewData]()
         callback(false)
     }
 }
